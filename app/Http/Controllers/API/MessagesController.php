@@ -46,7 +46,7 @@ class MessagesController extends Controller
                     "id" => $active_conversations[$x]->user_1->id,
                     "name" => $active_conversations[$x]->user_1->name,
                     "email" => $active_conversations[$x]->user_1->email,
-                    "last_position" => $active_conversations[$x]->user_1->last_position
+                    "last_position" => $active_conversations[$x]->user_1->positions
                 ];
                 $active_users[$x] = $active_conversations[$x]->user_1->id;
             }else{
@@ -54,7 +54,7 @@ class MessagesController extends Controller
                     "id" => $active_conversations[$x]->user_2->id,
                     "name" => $active_conversations[$x]->user_2->name,
                     "email" => $active_conversations[$x]->user_2->email,
-                    "last_position" => $active_conversations[$x]->user_2->last_position
+                    "last_position" => $active_conversations[$x]->user_2->positions
                 ];
                 $active_users[$x] = $active_conversations[$x]->user_2->id;
             }
@@ -86,7 +86,7 @@ class MessagesController extends Controller
                 "id" => $inactive_user->id,
                 "name" => $inactive_user->name,
                 "email" => $inactive_user->email,
-                "last_position" => $inactive_user->last_position
+                "last_position" => $inactive_user->positions
             ];
 
             $conversations[$x]['id']= 0;
