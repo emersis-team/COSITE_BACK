@@ -38,6 +38,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $with = [
+        'last_position',
+    ];
+
     //Get messages_sent for the user
     public function messages_sent()
     {
@@ -48,6 +52,18 @@ class User extends Authenticatable
     public function messages_received()
     {
         return $this->hasMany('App\Models\Message', 'receiver_id')->orderBy('created_at','desc');
+    }
+
+    //Get Positions for the User
+    public function positions()
+    {
+        return $this->hasMany('App\Models\UserPosition')->orderBy('created_at','desc');
+    }
+
+    //Get LastPosition for the User
+    public function last_position()
+    {
+        return $this->hasMany('App\Models\UserPosition')->orderBy('created_at','desc')->firt();
     }
 
 }
