@@ -44,4 +44,11 @@ Route::group([
         Route::post('/fileMessage', 'MessagesController@createFileMessage');
         Route::post('/positionMessage', 'MessagesController@createPositionMessage');
     });
+
+    //User Position
+    Route::prefix('position')->group(function () {
+        Route::get('/user_positions', 'UserPositionController@getUserPositions');
+        Route::get('/last_user_position', 'UserPositionController@getLastUserPosition');
+        Route::post('/user_position', 'UserPositionController@createUserPosition');
+    });
  });
