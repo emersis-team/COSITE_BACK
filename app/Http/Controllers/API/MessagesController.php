@@ -7,9 +7,10 @@ use App\Models\Message;
 use App\Events\NewMessage;
 use App\Models\FileMessage;
 use App\Models\TextMessage;
-use App\Models\PositionMessage;
 use App\Models\Conversation;
+use App\Models\UserPosition;
 use Illuminate\Http\Request;
+use App\Models\PositionMessage;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -516,6 +517,18 @@ class MessagesController extends Controller
 
             Conversation::where('id',$conversation->id)
                           ->update(['updated_at' => now()]);
+
+            //Con las coordenadas enviadas en el mensaje, reporta también la posición del usuario
+            $user_position = UserPosition::create([
+                'user_id' => $user->id,
+                'lat' => $campos['lat'],
+                'lon' => $campos['lon'],
+                'alt' => $campos['alt']
+            ]);
+            
+            if (!$user_position) {
+                throw new \Error('No se pudo crear la posición actual del usuario.');
+            }
 
             DB::commit();
 

@@ -53,7 +53,7 @@ class UserPositionController extends Controller
                 'alt' => ['required','numeric'],
             ]);
 
-            //Crea la posición del usurio
+            //Crea la posición del usuario
             $user_position = UserPosition::create([
                 'user_id' => $user->id,
                 'lat' => $campos['lat'],
