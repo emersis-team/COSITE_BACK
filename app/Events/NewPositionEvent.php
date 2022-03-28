@@ -42,7 +42,7 @@ class NewPositionEvent implements ShouldBroadcast
 
         foreach($this->contacts as $x => $contact){
             
-            var_dump('user.' . $contact->id);
+            //var_dump('user.' . $contact->id);
             $users_to_broadcast[$x] = new channel('user.' . $contact->id);
         }
 
