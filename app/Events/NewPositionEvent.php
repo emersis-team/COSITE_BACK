@@ -25,10 +25,10 @@ class NewPositionEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(UserPosition $position, array $contacts)
+    public function __construct(UserPosition $position, $contacts)
     {
         $this->position = $position;
-        $this->contactos = $contacts;
+        $this->contacts = $contacts;
     }
 
     /**
@@ -40,9 +40,10 @@ class NewPositionEvent implements ShouldBroadcast
     {
         $users_to_broadcast[] = array();
 
-        foreach($this->contactos as $x => $contactId){
-
-            $users_to_broadcast[$x] = new channel('user.' . $contactId);
+        foreach($this->contacts as $x => $contact){
+            
+            var_dump('user.' . $contact->id);
+            $users_to_broadcast[$x] = new channel('user.' . $contact->id);
         }
 
         //Devuelve un array con los canales de todos los contactos
