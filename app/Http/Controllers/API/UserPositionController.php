@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\NewPositionEvent;
 use App\User;
 
 use Illuminate\Http\Request;
@@ -65,8 +66,12 @@ class UserPositionController extends Controller
                 throw new \Error('No se pudo crear la posición actual del usuario.');
             }
 
-            //Se lanza evento de Nuevo Mensaje
-            //broadcast(new NewMessage($message));
+            //Se buscan los contactos del usuario
+            //Cuando se implemente OAuth, los contactos los debe enviar el FRONT
+            $contacts = User::where('id','<>', $user->id)->get('id');
+
+            //Se lanza evento de NewPositioEvent
+            broadcast(new NewPositionEvent($user_position, $contacts));
 
             return response()->json([
                             'status' => 200,
