@@ -39,7 +39,6 @@ return [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 //'useTLS' => true,
                 'encrypted' => true,
-                'encrypted' => false,
                 'host' => '127.0.0.1',
                 //'host' => 'f2f7ceadc938.ngrok.io',
                 'port' => 6001,
